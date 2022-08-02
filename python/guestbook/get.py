@@ -13,7 +13,7 @@ redisConnection = redis.StrictRedis(host='redis.guestbook', port=6379, db=0)
 def main():
     messages = redisConnection.lrange('guestbook', 0, -1)
 
-    items = [("<li>%s</li>" % escape(m.decode('utf-8'))) for m in messages]
+    items = [f"<li>{escape(m.decode('utf-8'))}</li>" for m in messages]
     ul = "<ul>%s</ul>" % "\n".join(items)
     return """
       <html><body style="font-family:sans-serif;font-size:2rem;padding:40px">
